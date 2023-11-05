@@ -1,0 +1,14 @@
+<launch>
+  <!-- 启动Gmapping -->
+  <!-- <include file="$(find task4_package)/launch/task4_01_mapping.launch.launch" /> -->
+
+  <!-- 保存地图 -->
+  <!-- <include file="$(find task4_package)/launch/task4_02_save_map.launch" /> -->
+
+  <!-- 识别导航目标 -->
+  <include file="$(find task4_package)/launch/task4_03_nav_goal_assignment.launch" />
+
+  <!-- 定位和导航 -->
+  <include file="$(find task4_package)/launch/task4_04_amcl_localization.launch" />
+  <!-- <include file="$(find task4_package)/launch/task4_05_move_base_nav.launch" /> -->
+</launch>

@@ -1,0 +1,7 @@
+<launch>
+    <!-- 相机彩色和深度图 -->
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" output="log" />
+    
+    <!-- 识别目标点 -->
+    <node  name="letter_recognition_node" pkg="task4_package" type="01_letter_recognition_node.py" output="screen"/>
+</launch>

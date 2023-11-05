@@ -1,0 +1,62 @@
+<launch>
+    <!-- 启动地图 -->
+    <arg name="map" default="nav.yaml" />
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find task4_package)/map/$(arg map)" output="log" />
+  
+    <!-- 雷达点云 -->
+    <include file="$(find scout_bringup)/launch/open_rslidar.launch"/>
+    <node pkg="task1_package" type="lidar_node" name="lidar_node"/>
+    
+    <!-- 启动AMCL定位 -->
+    <node pkg="amcl" type="amcl" name="amcl" output="screen">
+        <!-- 以最大10 Hz的频率发布最佳位姿的扫描 -->
+        <!-- 里程计模式为差分 -->
+        <param name="odom_model_type" value="diff"/>
+        <param name="odom_alpha5" value="0.1"/>
+        <param name="transform_tolerance" value="0.2" />
+        <param name="gui_publish_rate" value="10.0"/>
+        <param name="laser_max_beams" value="30"/>
+        <param name="min_particles" value="500"/>
+        <param name="max_particles" value="5000"/>
+        <param name="kld_err" value="0.05"/>
+        <param name="kld_z" value="0.99"/>
+        <param name="odom_alpha1" value="0.2"/>
+        <param name="odom_alpha2" value="0.2"/>
+        <!-- 平移标准差，单位：米 -->
+        <param name="odom_alpha3" value="0.8"/>
+        <param name="odom_alpha4" value="0.2"/>
+        <param name="laser_z_hit" value="0.5"/>
+        <param name="laser_z_short" value="0.05"/>
+        <param name="laser_z_max" value="0.05"/>
+        <param name="laser_z_rand" value="0.5"/>
+        <param name="laser_sigma_hit" value="0.2"/>
+        <param name="laser_lambda_short" value="0.1"/>
+        <param name="laser_lambda_short" value="0.1"/>
+        <param name="laser_model_type" value="likelihood_field"/>
+
+        <!-- 设置初始位姿 -->
+        <!-- <param name="set_initial_pose" value="true"/> -->
+        <param name="initial_pose_x" value="7.2339"/>
+        <param name="initial_pose_y" value="-1.0274"/>
+        <param name="initial_pose_a" value="1.5708"/>
+         
+        <!-- <param name="laser_model_type" value="beam"/> -->
+        <param name="laser_likelihood_max_dist" value="2.0"/>
+        <param name="update_min_d" value="0.2"/>
+        <param name="update_min_a" value="0.5"/>
+
+        <!-- 里程计坐标系 -->
+        <param name="odom_frame_id" value="odom"/> 
+
+        <!-- 添加机器人基坐标系 -->
+        <param name="base_frame_id" value="base_footprint"/>
+
+        <!-- 添加地图坐标系 -->
+        <param name="global_frame_id" value="map"/> 
+
+        <param name="resample_interval" value="1"/>
+        <param name="transform_tolerance" value="0.1"/>
+        <param name="recovery_alpha_slow" value="0.0"/>
+        <param name="recovery_alpha_fast" value="0.0"/>
+    </node>
+</launch>

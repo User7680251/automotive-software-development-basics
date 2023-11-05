@@ -1,0 +1,22 @@
+<launch>
+    <!-- 启动 move_base 节点用于导航功能 -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
+        <!-- 加载全局代价地图的参数 -->
+        <rosparam file="$(find task4_package)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+
+        <!-- 加载局部代价地图的参数 -->
+        <rosparam file="$(find task4_package)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+
+        <!-- 加载局部代价地图的具体参数 -->
+        <rosparam file="$(find task4_package)/param/local_costmap_params.yaml" command="load" />
+
+        <!-- 加载全局代价地图的具体参数 -->
+        <rosparam file="$(find task4_package)/param/global_costmap_params.yaml" command="load" />
+
+        <!-- 加载基于局部代价地图的本地路径规划器的参数 -->
+        <rosparam file="$(find task4_package)/param/base_local_planner_params.yaml" command="load" />
+    </node>
+
+    <!-- 指定 move_base 导航终点 -->
+    <node  name="nav_goal_node" pkg="task4_package" type="02_nav_goal_node.py" output="screen"/>
+</launch>

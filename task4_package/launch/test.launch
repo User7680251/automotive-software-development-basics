@@ -1,0 +1,4 @@
+<launch>
+    <!-- <include file="$(find task4_package)/launch/task4_05_move_base_nav.launch" /> -->
+    <include file="$(find task4_package)/launch/task4_03_nav_goal_assignment.launch" />
+</launch>
