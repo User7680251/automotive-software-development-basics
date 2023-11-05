@@ -15,4 +15,7 @@ include_directories(
 
 add_executable(scout_state_node src/scout_state_node.cpp)
 add_executable(panel_node src/panel_node.cpp)
+add_executable(scout_control_node src/scout_control_node.cpp)
 target_link_libraries(scout_state_node ${catkin_LIBRARIES})
+target_link_libraries(panel_node ${catkin_LIBRARIES})
+target_link_libraries(scout_control_node ${catkin_LIBRARIES})

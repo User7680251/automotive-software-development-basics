@@ -10,5 +10,13 @@
 
   <!-- 定位和导航 -->
   <include file="$(find task4_package)/launch/task4_04_amcl_localization.launch" />
-  <!-- <include file="$(find task4_package)/launch/task4_05_move_base_nav.launch" /> -->
+  <include file="$(find task4_package)/launch/task4_05_move_base_nav.launch" />
+
+  <!-- 控制底盘 -->
+  <include file="$(find scout_bringup)/launch/scout_volecity_smoother.launch"/>
+  <!-- <include file="$(find scout_base)/launch/scout_mini_base.launch">
+      <arg name="port_name" default="can0" />
+      <arg name="simulated_robot" default="false" />
+  </include> -->
+
 </launch>

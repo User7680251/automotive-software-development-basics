@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
 import rospy
@@ -7,6 +7,7 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from std_msgs.msg import String
+from actionlib_msgs.msg import GoalStatus
 
 
 def callback(msg):
@@ -16,7 +17,7 @@ def callback(msg):
     if(message == "A"):
         x, y = 8.4196, 6.0695
     if(message == "B"):
-        x, y = 5.4631, 4.0171
+        x, y = 5.8831, 4.0171
     if(message == "C"):
         x, y = 9.2778, 2.3851
     if(message == "D"):
@@ -42,13 +43,13 @@ def set_goal_position(x, y):
     rospy.loginfo("set target success")
 
     # 等待移动完成
-    client.wait_for_result(rospy.Duration.from_sec(114.515))
+    client.wait_for_result(rospy.Duration.from_sec(11.4514))
 
     # 获取移动的结果
-    result = client.get_result()
+    result = client.get_state()
 
     # 输出移动结果
-    if result and result.status == 3:
+    if result == GoalStatus.SUCCEEDED:
         rospy.loginfo("\033[1;32m mission success\033[0m")
     else:
         rospy.loginfo("\033[1;31m mission failed\033[0m")

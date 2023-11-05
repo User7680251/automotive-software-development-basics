@@ -2,6 +2,7 @@
 #include <std_msgs/Float64.h>
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
+#include <tf/tf.h>
 
 ros::Publisher vel_pub;
 ros::Publisher pose_pub;

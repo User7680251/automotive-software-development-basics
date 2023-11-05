@@ -21,7 +21,7 @@ include_directories(
 )
 
 catkin_install_python(PROGRAMS
-src/01_letter_recognition_node.py
-src/02_nav_goal_node.py
-DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+    src/01_letter_recognition_node.py
+    src/02_nav_goal_node.py
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

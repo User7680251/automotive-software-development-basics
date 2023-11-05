@@ -102,7 +102,7 @@ def BaiduOCR(img):
     cv_img = img
 
     # 保存图像到temp.jpg
-    save_path = "/home/agilex/catkin_ws/src/task4_package/.temp/temp.jpg"
+    save_path = "/home/agilex/catkin_ws/src/automotive-software-development-basics/task4_package/.temp/temp.jpg"
     cv2.imwrite(save_path, cv_img)
     # print("Image saved as temp.jpg")
 

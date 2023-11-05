@@ -4,7 +4,6 @@
 import numpy as np
 import rospy
 import cv2
-import pytesseract
 from sensor_msgs.msg import Image
 from std_msgs.msg import String
 
@@ -65,21 +64,6 @@ def letter_recognition_node():
     while not rospy.is_shutdown():
         # 等待1秒，控制识别频率为1Hz
         rate.sleep()
-
-def pytesseract_OCR():
-    cv_img = cv2.cvtColor(cv_img, cv2.COLOR_RGB2BGR)
-    image_path = "/home/agilex/Pictures/ros_nav/2.jpg"
-    cv_img = cv2.imread(image_path)
-    gray_image = cv2.cvtColor(cv_img, cv2.COLOR_BGR2GRAY)
-
-    output_path = "/home/agilex/catkin_ws/src/task4_package/map/gray_image.jpg"
-    cv2.imwrite(output_path, cv_img)
-    
-    # 使用pytesseract进行OCR，仅识别白名单中的字符
-    result = pytesseract.image_to_string(gray_image, config="-c tessedit_char_whitelist=abcdABCD -psm 6")
-    
-    # 打印识别结果
-    print("识别结果: ", result)
 
 
 if __name__ == '__main__':
